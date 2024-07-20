@@ -28,9 +28,9 @@ def calculate_cooking_profit(driver, raw_id, cooked_id):
     
     if raw_price is not None and cooked_price is not None:
         profit = cooked_price - raw_price
-        return profit
+        return profit, raw_price, cooked_price
     else:
-        return None
+        return None, None, None
 
 # List of item pairs (raw_id, cooked_id, name)
 item_pairs = [
@@ -46,10 +46,13 @@ profits = []
 
 try:
     for raw_id, cooked_id, name in item_pairs:
-        profit = calculate_cooking_profit(driver, raw_id, cooked_id)
+        profit, raw_price, cooked_price = calculate_cooking_profit(driver, raw_id, cooked_id)
         if profit is not None:
-            print(f"Profit for cooking {name}: {profit} coins")
-            profits.append((name, profit))
+            #print(f"Profit for cooking {name}: {profit} coins. Raw Price: {raw_price}, Cooked Price: {cooked_price}.")
+
+            print(f"{name}s|Raw Price: {raw_price}, Cooked Price: {cooked_price}, Profit: {profit} coins.")
+
+            profits.append((name, profit, raw_price, cooked_price))
         else:
             print(f"Unable to calculate profit for {name}")
         
@@ -57,7 +60,9 @@ try:
 
     if profits:
         most_profitable = max(profits, key=lambda x: x[1])
-        print(f"\nThe most profitable item to cook is {most_profitable[0]} with a profit of {most_profitable[1]} coins.")
+        most_profitable_name, most_profitable_profit, most_profitable_raw_price, most_profitable_cooked_price = most_profitable
+        print(f"\nThe most profitable item to cook are {most_profitable_name}s with a profit of {most_profitable_profit} coins.")
+        print(f"Buy raw {most_profitable_name}s for {most_profitable_raw_price}, sell cooked {most_profitable_name}s for {most_profitable_cooked_price} coins.")
     else:
         print("\nUnable to determine the most profitable item due to data retrieval issues.")
 finally:
