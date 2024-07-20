@@ -3,7 +3,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 
 def setup_driver():
     try:
@@ -26,8 +25,6 @@ def get_item_price(driver, item_id):
     
     except Exception as e:
         print(f"Error fetching data for item {item_id}: {e}")
-
-    print(f"Failed to fetch data for item {item_id} after {MAX_RETRIES} retries.")
     return None
 
 def calculate_cooking_profit(driver, raw_id, cooked_id, name):
@@ -36,7 +33,7 @@ def calculate_cooking_profit(driver, raw_id, cooked_id, name):
     
     if raw_price is not None and cooked_price is not None:
         profit = cooked_price - raw_price
-        print(f"{name}s|Raw Price: {raw_price}, Cooked Price: {cooked_price}, Profit: {profit} coins.")
+        print(f"{name}|Raw Price: {raw_price}, Cooked Price: {cooked_price}, Profit: {profit} coins.")
         return name, profit, raw_price, cooked_price
     else:
         print(f"Unable to calculate profit for {name}")
@@ -68,10 +65,10 @@ def main():
     if profits:
         most_profitable = max(profits, key=lambda x: x[1])
         most_profitable_name, most_profitable_profit, most_profitable_raw_price, most_profitable_cooked_price = most_profitable
-        print(f"\nThe most profitable item to cook are {most_profitable_name}s with a profit of {most_profitable_profit} coins.")
-        print("\n")
-        print(f"Buy raw {most_profitable_name}s for {most_profitable_raw_price}, sell cooked {most_profitable_name}s for {most_profitable_cooked_price} coins.")
-        print("\n")
+        
+        print(f"\n{most_profitable_name} is the most profitable fish to cook with a profit of {most_profitable_profit} coins per fish.")
+
+        print(f"Buy raw {most_profitable_name} for {most_profitable_raw_price}, sell cooked {most_profitable_name} for {most_profitable_cooked_price} coins. \n")
     else:
         print("\nUnable to determine the most profitable item due to data retrieval issues.")
 

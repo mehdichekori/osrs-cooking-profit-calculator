@@ -11,10 +11,9 @@ item_pairs = [
 
 def get_item_price_from_api(item_id):
     try:
-        url = f"https://prices.runescape.wiki/api/v1/osrs/latest"
+        url = "https://prices.runescape.wiki/api/v1/osrs/latest"
         response = requests.get(url)
         data = response.json()
-        # Assuming item_id is the key for the raw and cooked item prices
         raw_price = data["data"].get(str(item_id[0]), {}).get("low")
         cooked_price = data["data"].get(str(item_id[1]), {}).get("low")
         return raw_price, cooked_price
@@ -27,8 +26,9 @@ def calculate_cooking_profit(raw_price, cooked_price, name):
         raw_price = int(raw_price)
         cooked_price = int(cooked_price)
         profit = cooked_price - raw_price
-        print(f"{name}s|Raw Price: {raw_price}, Cooked Price: {cooked_price}, Profit: {profit} coins.")
-        return name, profit, raw_price, cooked_price
+        roi = (profit / raw_price) * 100 if raw_price != 0 else 0
+        print(f"{name} | Raw Price: {raw_price}, Cooked Price: {cooked_price}, Profit: {profit} coins, ROI: {roi:.2f}%")
+        return name, profit, raw_price, cooked_price, roi
     except Exception as e:
         print(f"Error calculating profit for {name}: {e}")
         return None
@@ -46,10 +46,11 @@ def main():
 
     if profits:
         most_profitable = max(profits, key=lambda x: x[1])
-        most_profitable_name, most_profitable_profit, most_profitable_raw_price, most_profitable_cooked_price = most_profitable
-        print(f"\nThe most profitable item to cook are {most_profitable_name}s with a profit of {most_profitable_profit} coins.")
-        print(f"Buy raw {most_profitable_name}s for {most_profitable_raw_price}, sell cooked {most_profitable_name}s for {most_profitable_cooked_price} coins.")
-        print("\n")
+        most_profitable_name, most_profitable_profit, most_profitable_raw_price, most_profitable_cooked_price, most_profitable_roi = most_profitable
+        
+        print(f"\n{most_profitable_name} is the most profitable fish to cook with a profit of {most_profitable_profit} coins per fish and ROI of {most_profitable_roi:.2f}%.")
+
+        print(f"Buy raw {most_profitable_name} for {most_profitable_raw_price}, sell cooked {most_profitable_name} for {most_profitable_cooked_price} coins. \n")
     else:
         print("\nUnable to determine the most profitable item due to data retrieval issues.")
 
