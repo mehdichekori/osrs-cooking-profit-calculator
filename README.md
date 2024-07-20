@@ -26,8 +26,8 @@ This Python project calculates the profit margins for cooking various food items
 - Manta ray | Raw Price: 1250, Cooked Price: 1496, Profit: 246 coins, ROI: 19.68%
 - Anglerfish | Raw Price: 2096, Cooked Price: 2101, Profit: 5 coins, ROI: 0.24%
 ###
-Manta ray is the most profitable fish to cook with a profit of 246 coins per fish and ROI of 19.68%.
-Buy raw Manta ray for 1250, sell cooked Manta ray for 1496 coins.
+- Manta ray is the most profitable fish to cook with a profit of 246 coins per fish and ROI of 19.68%.
+- Buy raw Manta ray for 1250, sell cooked Manta ray for 1496 coins.
 
 ## Prerequisites
 - Python 3.x
@@ -90,7 +90,7 @@ Both scripts will output the profit for cooking each food item and recommend the
 Contributions, issues, and feature requests are welcome. Feel free to check the [issues page](https://github.com/mehdichekori/osrs-cooking-profit-calculator/issues) if you want to contribute.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/mehdichekori/osrs---cooking-profit-calc/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/mehdichekori/osrs-cooking-profit-calculator/blob/main/LICENSE) file for details.
 
 ## Disclaimer
 This tool is for educational purposes only. Use it responsibly and ensure compliance with the terms of service of websites from which data is fetched, such as the OSRS Wiki. Always check and comply with the website's robots.txt file and terms of use.
