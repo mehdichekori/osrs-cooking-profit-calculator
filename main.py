@@ -4,15 +4,20 @@ import time
 
 def get_item_price(item_id):
     url = f"https://prices.runescape.wiki/osrs/item/{item_id}"
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    
-    # You'll need to replace this selector with the correct one for the buy price
-    price_element = soup.select_one('.buy-price-value')
-    
-    if price_element:
-        return int(price_element.text.replace(',', ''))
-    else:
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raises an HTTPError for bad responses
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        price_element = soup.select_one('h5 .wgl-item-price')
+        
+        if price_element:
+            return int(price_element.text.replace(',', '').split()[0])
+        else:
+            print(f"Price element not found for item {item_id}")
+            return None
+    except requests.RequestException as e:
+        print(f"Error fetching data for item {item_id}: {e}")
         return None
 
 def calculate_cooking_profit(raw_id, cooked_id):
