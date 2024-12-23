@@ -6,7 +6,10 @@ item_pairs = [
     (383, 385, "Shark"),
     (395, 397, "Sea turtle"),
     (389, 391, "Manta ray"),
-    (13439, 13441, "Anglerfish")
+    (13439, 13441, "Anglerfish"),
+    (377, 379, "Lobster"),
+    (371, 373, "Sword Fish"),
+    (359, 361, "Tuna")
 ]
 
 def get_item_price_from_api(item_id):
