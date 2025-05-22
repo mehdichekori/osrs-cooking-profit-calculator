@@ -2986,3 +2986,7 @@ myenv/Lib/site-packages/wsproto-1.2.0.dist-info/top_level.txt
 myenv/Lib/site-packages/wsproto-1.2.0.dist-info/WHEEL
 myenv/Scripts/chromedriver-path.exe
 myenv/Scripts/wsdump.exe
+__pycache__/cooking_item.cpython-39.pyc
+__pycache__/cooking_item.cpython-313.pyc
+__pycache__/cooking_profit_calculator.cpython-39.pyc
+__pycache__/cooking_profit_calculator.cpython-313.pyc
